@@ -1,163 +1,98 @@
-# Slide Templates
+# Slide Templates & Best Practices
 
-Use these ready-to-copy templates for creating common slide types.
+Use these patterns to create high-quality slides and avoid common technical issues.
 
-## 📖 1. Theory Slide (Top Title)
+## 🏆 Troubleshooting & Best Practices (CRITICAL)
 
-Use this for general concepts or definitions.
+### 1. Displaying HTML Tags in Text
+**Problem:** Writing `<tag>` directly in text causes Vue compilation errors (missing end tag).
+**Solution:** Use the `<code>&lt;tag&gt;</code>` pattern. This ensures the tag is displayed correctly as text and styled as code, without confusing the compiler.
+
+```markdown
+<!-- Correct way to show tags in a heading or paragraph -->
+# Elementul <code>&lt;form&gt;</code>
+<p>Folosește tag-ul <code>&lt;label&gt;</code> pentru accesibilitate.</p>
+```
+
+### 2. Live Interactive Demos (`LiveWeb`)
+- **Focus**: The editor shows only the content of the `<body>`. The rest of the boilerplate (HTML, CSS) is hidden to keep things simple.
+- **Default Height**: `350px`.
+- **Prop Usage**: Use the `html` prop to provide the initial code for the user to edit.
+- **Syntax**: Use double quotes for the prop and single quotes inside the HTML code to avoid parsing errors.
+
+```markdown
+<LiveWeb 
+  html="<form>
+  <label for='name'>Name:</label>
+  <input type='text' id='name'>
+</form>"
+/>
+```
+
+### 3. Layout Compatibility
+Always prefer the `default` layout for theory slides to ensure they look good regardless of the theme choice. Avoid theme-specific layouts like `top-title` unless you are sure they exist in the current theme.
+
+---
+
+## 📖 1. Theory Slide
 
 ```markdown
 ---
-layout: top-title
-align: c
-color: sky-light
+layout: default
 ---
 
-::title::
 # Concept Name
 
-::content::
-
-The core idea behind this concept:
-
-- **Key Point 1**: Explanation of point 1.
-- **Key Point 2**: Explanation of point 2.
+- **Point 1**: Description.
+- **Point 2**: Description.
 
 <AdmonitionType type="tip">
-**Pro Tip:** This is a helpful hint for students.
+  <span>Pro Tip: Use the <code>&lt;input&gt;</code> tag correctly.</span>
 </AdmonitionType>
 ```
 
 ---
 
-## 🏗️ 2. Comparison Slide (Two Columns)
-
-Use this for comparing two technologies or approaches.
+## 💻 2. Live Code Slide
 
 ```markdown
 ---
-layout: top-title-two-cols
-columns: is-6
-color: sky-light
-align: c-lt-lt
+layout: default
 ---
 
-:: title ::
-# Comparison Title
+# Interactive Demo
 
-:: left ::
-
-### Approach A
-- Pros: Fast, simple.
-- Cons: Limited flexibility.
-
-:: right ::
-
-### Approach B
-- Pros: Highly flexible.
-- Cons: Complex setup.
-
-:: default ::
-
-<AdmonitionType type="note" class="mt-4">
-Choose the approach that fits your project requirements.
-</AdmonitionType>
-```
-
----
-
-## 💻 3. Interactive Code Sandbox
-
-Use this to demonstrate live code that students can interact with.
-
-```markdown
----
-layout: top-title
-align: c
-color: sky-light
----
-
-::title::
-# Interactive Example
-
-::content::
-
-Experiment with the code below to see the results.
-
-<LiveReact 
-  code={`import React, { useState } from 'react';
-
-export default function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h4>Counter Demo</h4>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(c => c + 1)}>Increment</button>
-    </div>
-  );
-}`} 
-  editorHeight="400px" 
+<LiveWeb 
+  html="<div class='container'>
+  <h1>Hello!</h1>
+</div>"
 />
 ```
 
 ---
 
-## 📈 4. Process Flow Slide
-
-Use this for explaining step-by-step processes or lifecycles.
+## 🎓 3. Exercise & Final Slide
 
 ```markdown
 ---
-layout: top-title
-align: c
-color: sky-light
+layout: section
 ---
 
-::title::
-# Process Lifecycle
+# Exercițiu Practic 🛠️
 
-::content::
-
-<script setup>
-const steps = [
-  { title: 'Step 1', description: 'Initialize' },
-  { title: 'Step 2', description: 'Update' },
-  { title: 'Step 3', description: 'Destroy' }
-]
-</script>
-
-<ProcessFlow :steps="steps" />
-```
+Creează un formular simplu cu un buton.
 
 ---
-
-## 🌟 5. Visual Highlight (Info Cards)
-
-Use this for showcasing a set of features or concepts visually.
-
-```markdown
----
-layout: top-title
-align: c
-color: sky-light
+layout: default
 ---
 
-::title::
-# Key Features
+# Rezolvă Exercițiul
 
-::content::
+<LiveWeb />
 
-<div class="grid grid-cols-2 gap-4 h-full items-stretch">
+---
+layout: center
+---
 
-<InfoCard icon="⚡" title="Fast">
-  Optimized for speed.
-</InfoCard>
-
-<InfoCard icon="🎨" title="Styled">
-  Beautiful design.
-</InfoCard>
-
-</div>
+# Mulțumesc! 🚀
 ```

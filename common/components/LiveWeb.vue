@@ -26,140 +26,123 @@ import { useDarkMode } from '@slidev/client';
 const { isDark } = useDarkMode();
 
 const props = defineProps({
-  code: {
-    type: String,
-    default: "console.log('Hello World!');\ndocument.body.innerHTML = '<h1>Hello from JavaScript!</h1>';"
-  },
-  files: {
-    type: Object,
-    default: null
-  },
-  dependencies: {
-    type: Object,
-    default: () => ({})
-  },
-  theme: {
-    type: String,
-    default: null
-  },
-  editorHeight: {
-    type: [String, Number],
-    default: '800px'
-  },
-  showLineNumbers: {
-    type: Boolean,
-    default: true
-  },
-  showInlineErrors: {
-    type: Boolean,
-    default: true
-  },
-  showTabs: {
-    type: Boolean,
-    default: true
-  },
-  showNavigator: {
-    type: Boolean,
-    default: false
-  },
-  showFileExplorer: {
-    type: Boolean,
-    default: true
-  },
-  showConsole: {
-    type: Boolean,
-    default: false
-  },
-  consoleOnly: {
-    type: Boolean,
-    default: false
-  },
-  options: {
-    type: Object,
-    default: () => ({})
-  }
+  code: { type: String, default: "" },
+  html: { type: String, default: "" },
+  files: { type: Object, default: null },
+  dependencies: { type: Object, default: () => ({}) },
+  theme: { type: String, default: null },
+  editorHeight: { type: [String, Number], default: '350px' },
+  showLineNumbers: { type: Boolean, default: true },
+  showInlineErrors: { type: Boolean, default: true },
+  showTabs: { type: Boolean, default: false },
+  showNavigator: { type: Boolean, default: false },
+  showFileExplorer: { type: Boolean, default: false },
+  showConsole: { type: Boolean, default: false },
+  consoleOnly: { type: Boolean, default: false },
+  options: { type: Object, default: () => ({}) }
 });
 
 const template = 'static';
 
-const effectiveTheme = computed(() => {
-  // Use explicit theme prop if provided, otherwise follow presentation theme
-  return props.theme || (isDark.value ? 'dark' : 'light');
-});
+const effectiveTheme = computed(() => props.theme || (isDark.value ? 'dark' : 'light'));
 
 const defaultCSS = computed(() => {
   const isLightTheme = effectiveTheme.value === 'light';
   return `body {
-  font-family: system-ui, -apple-system, sans-serif;
-  padding: 20px;
-  background: ${isLightTheme ? '#f5f5f5' : '#1e1e1e'};
-  color: ${isLightTheme ? '#000' : '#e0e0e0'};
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 24px;
+  background-color: ${isLightTheme ? '#f8f9fa' : '#1e1e1e'};
+  color: ${isLightTheme ? '#212529' : '#e0e0e0'};
 }
-
-#app {
-  max-width: 800px;
+form {
+  max-width: 400px;
   margin: 0 auto;
-  background: ${isLightTheme ? 'white' : '#2d2d2d'};
+  background: ${isLightTheme ? '#ffffff' : '#2d2d2d'};
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,${isLightTheme ? '0.1' : '0.3'});
-}`;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h1, h2, h3, p { margin-top: 0; }
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: ${isLightTheme ? '#495057' : '#adb5bd'};
+}
+input[type="text"], input[type="email"], input[type="number"], input[type="password"], select, textarea {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid ${isLightTheme ? '#dee2e6' : '#495057'};
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: ${isLightTheme ? '#fff' : '#3d3d3d'};
+  color: inherit;
+}
+/* Radio & Checkbox special styling */
+input[type="radio"], input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin: 0 8px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+}
+input[type="radio"] + label, input[type="checkbox"] + label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: 400;
+}
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:hover { background-color: #0b5ed7; transform: translateY(-1px); }`;
 });
 
-const defaultHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Demo</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-  <div id="app">
-    <h1>Hello World!</h1>
-  </div>
-  <script src="/index.js"><` + `/script>
-</body>
-</html>`;
-
-const consoleOnlyHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Console Demo</title>
-</head>
-<body>
-  <script type="module">
-    // Fetch the code and wrap in IIFE for isolation
-    const scriptContent = await fetch('/index.js').then(r => r.text());
-    (function() {
-      eval(scriptContent);
-    })();
-  <` + `/script>
-</body>
-</html>`;
-
 const sandpackFiles = computed(() => {
-  if (props.files) {
-    return props.files;
-  }
+  if (props.files) return props.files;
+
+  const userHTML = props.html || '<!-- Scrie codul tău aici -->\n<form>\n  <label>Nume:</label>\n  <input type="text">\n  <button type="submit">Trimite</button>\n</form>';
+
+  const entryHTML = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    async function update() {
+      try {
+        const res = await fetch('code.html');
+        const text = await res.text();
+        document.getElementById('root').innerHTML = text;
+      } catch (e) {}
+    }
+    update(); // Run once on load
+  <\/script>
+</body>
+</html>`;
 
   return {
-    '/index.html': props.consoleOnly ? consoleOnlyHTML : defaultHTML,
-    '/index.js': props.code,
-    '/styles.css': {
-      code: defaultCSS.value,
-      hidden: true
-    }
+    '/index.html': { code: entryHTML, hidden: true },
+    '/code.html': { code: userHTML, active: true },
+    '/styles.css': { code: defaultCSS.value, hidden: true }
   };
 });
 
-const customSetup = computed(() => ({
-  dependencies: {
-    ...props.dependencies
-  }
-}));
+const customSetup = computed(() => ({ dependencies: { ...props.dependencies } }));
 
 const sandpackOptions = computed(() => ({
   showLineNumbers: props.showLineNumbers,
@@ -173,20 +156,15 @@ const sandpackOptions = computed(() => ({
 
 const containerStyle = computed(() => {
   const heightValue = typeof props.editorHeight === 'number' ? `${props.editorHeight}px` : props.editorHeight;
-  return {
-    height: heightValue,
-    minHeight: heightValue
-  };
+  return { height: heightValue, minHeight: heightValue };
 });
 
 const sandpackProviderOptions = computed(() => ({
-  activeFile: props.options.activeFile || (props.consoleOnly ? '/index.js' : '/index.html'),
-  initMode: 'user-visible',
+  activeFile: '/code.html',
+  initMode: 'immediate',
   autorun: true,
   autoReload: true,
   recompileMode: 'immediate',
-  showConsole: props.consoleOnly ? true : props.showConsole,
-  showConsoleButton: props.consoleOnly ? false : true,
   ...props.options
 }));
 
@@ -195,36 +173,8 @@ const extensionsKeymap = [completionKeymap];
 </script>
 
 <style scoped>
-.sandbox-container {
-  width: 100%;
-}
-
-.sandbox-container :deep(.sp-wrapper) {
-  width: 100% !important;
-}
-
-.sandbox-container :deep(.sp-layout) {
-  width: 100% !important;
-}
-
-/* Console-only mode: hide preview completely off-screen */
-.sandbox-container.console-only-mode :deep(.sp-preview) {
-  position: absolute !important;
-  left: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-.sandbox-container.console-only-mode :deep(.sp-console-wrapper) {
-  height: 100% !important;
-  flex: 1 1 auto !important;
-  min-height: 200px !important;
-}
-
-.sandbox-container.console-only-mode :deep(.sp-console) {
-  height: 100% !important;
-  flex: 1 !important;
-}
+.sandbox-container { width: 100%; }
+.sandbox-container :deep(.sp-wrapper) { width: 100% !important; }
+.sandbox-container :deep(.sp-layout) { width: 100% !important; }
+.sandbox-container :deep(.sp-preview) { background: white !important; }
 </style>

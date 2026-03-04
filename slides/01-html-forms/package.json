@@ -1,0 +1,13 @@
+{
+  "name": "@react-course/html-forms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3044",
+    "build": "slidev build slides.md --base /staticPages/html1/"
+  },
+  "dependencies": {
+    "slidev-theme-geist": "^0.8.1"
+  }
+}

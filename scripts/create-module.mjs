@@ -43,9 +43,11 @@ function error(message) {
 
 // 1. Get and Validate Arguments
 const moduleName = process.argv[2];
+const themeName = process.argv[3] || 'neversink';
+const courseTitle = process.argv[4] || 'Course';
 
 if (!moduleName) {
-  error('Please provide a module folder name (e.g., 03-context)');
+  error('Usage: node scripts/create-module.mjs <folder-name> [theme] [course-title]');
 }
 
 const modulePath = path.join(SLIDES_DIR, moduleName);
@@ -78,12 +80,6 @@ log(`Creating module structure for ${moduleName}...`, 'blue');
 fs.mkdirSync(modulePath);
 fs.mkdirSync(path.join(modulePath, 'components'));
 fs.mkdirSync(path.join(modulePath, 'setup'));
-
-// Copy global-bottom.vue from common (Back to Courses button)
-const globalBottomSource = path.join(ROOT, 'common', 'global-bottom.vue');
-const globalBottomDest = path.join(modulePath, 'global-bottom.vue');
-fs.copyFileSync(globalBottomSource, globalBottomDest);
-log('✅ Copied global-bottom.vue from common', 'green');
 
 // 4. Write Files
 
@@ -138,12 +134,12 @@ fs.writeFileSync(path.join(modulePath, 'setup/main.ts'), setupMain);
 // Capitalize simple name for title
 const title = simpleName.charAt(0).toUpperCase() + simpleName.slice(1);
 const slidesContent = `---
-title: 'React Course'
-theme: neversink
+title: '${courseTitle}'
+theme: ${themeName}
 transition: slide-left
 layout: cover
 color: sky-light
-info: 'React Course · Crudu Cristian · 2026'
+info: '${courseTitle} · 2026'
 lineNumbers: true
 draw:
   enabled: true
@@ -153,10 +149,6 @@ favicon: './react.svg'
 ## ${title}
 
 New module - ready to customize!
-
-<div class="absolute top-2 right-2 w-8 h-8">
-<GithubLink repo="https://github.com/cristi-usm/react-course" />
-</div>
 `;
 fs.writeFileSync(path.join(modulePath, 'slides.md'), slidesContent);
 

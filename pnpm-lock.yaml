@@ -30,27 +30,11 @@ importers:
 
   common: {}
 
-  slides/00-hub: {}
-
-  slides/01-introduction: {}
-
-  slides/02-react-introduction: {}
-
-  slides/03-props-and-rendering: {}
-
-  slides/04-event-handling: {}
-
-  slides/05-state: {}
-
-  slides/database-role-in-systems:
+  slides/01-html-forms:
     dependencies:
-      '@slidev/theme-seriph':
-        specifier: ^0.25.0
-        version: 0.25.0
-
-  slides/html-forms-ro: {}
-
-  slides/pythagoras-theorem: {}
+      slidev-theme-geist:
+        specifier: ^0.8.1
+        version: 0.8.1
 
   slides/starter: {}
 
@@ -740,13 +724,9 @@ packages:
   '@slidev/rough-notation@0.1.0':
     resolution: {integrity: sha512-a/CbVmjuoO3E4JbUr2HOTsXndbcrdLWOM+ajbSQIY3gmLFzhjeXHGksGcp1NZ08pJjLZyTCxfz1C7v/ltJqycA==}
 
-  '@slidev/theme-seriph@0.25.0':
-    resolution: {integrity: sha512-PnFQbn4I70+/cVie5iAr0Im6sYvnwjkO7Yj5KonTyJZFFJFytckLTrD3ijft/J4cRnz7OmSzTyQKNX1FN/x0YQ==}
-    engines: {node: '>=14.0.0', slidev: '>=v0.47.0'}
-
-  '@slidev/types@0.47.5':
-    resolution: {integrity: sha512-X67V4cCgM0Sz50bP8GbVzmiL8DHC2IXvdKcsN7DlxHyf+/T4d9GveeGukwha5Fx3MuYeGZWKag7TFL2ZY4w54A==}
-    engines: {node: '>=18.0.0'}
+  '@slidev/types@0.28.10':
+    resolution: {integrity: sha512-XcJ12giBaeSHxImlYuDfO1XW686kWDq4uoftnPZyIxhNew4FREsbOLY8oG5Nz5qn05qSsnSDQGo55EbantKvfg==}
+    engines: {node: '>=14.0.0'}
 
   '@slidev/types@52.11.3':
     resolution: {integrity: sha512-NhZEPIObu5+idNNJ5nR3IVa6F+Q+Mh20IexKwuAcusHQmL28Rwgn9RuwNwlrA/MmotiynVQ22rkPixXUt+yu2A==}
@@ -2447,6 +2427,10 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
+  slidev-theme-geist@0.8.1:
+    resolution: {integrity: sha512-2DET+H1tvaFQyKYimg+4RlShLLnyOdW40GFfOH8kAJbsI1JOwzDiLv1UjyFO11y9O0/074/YIwArz9xg4Zde5A==}
+    engines: {node: '>=14', slidev: '>=0.20'}
+
   slidev-theme-neversink@0.4.1:
     resolution: {integrity: sha512-rrnwri1/2J0d5LsDyrV/Q1rjpOEvDiGiAOVTw2D349tNj4C7fninxfsBT9dKzGW3Zpbqotu9UTxKTX27Nvqetw==}
     engines: {node: '>=18.0.0', slidev: '>=52.11.3'}
@@ -3795,13 +3779,7 @@ snapshots:
     dependencies:
       roughjs: 4.6.6
 
-  '@slidev/theme-seriph@0.25.0':
-    dependencies:
-      '@slidev/types': 0.47.5
-      codemirror-theme-vars: 0.1.2
-      prism-theme-vars: 0.2.5
-
-  '@slidev/types@0.47.5': {}
+  '@slidev/types@0.28.10': {}
 
   '@slidev/types@52.11.3(@nuxt/kit@3.20.2)(@vue/compiler-sfc@3.5.26)(markdown-it-async@2.2.0)(postcss@8.5.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.7)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
@@ -5852,6 +5830,12 @@ snapshots:
       totalist: 3.0.1
 
   sisteransi@1.0.5: {}
+
+  slidev-theme-geist@0.8.1:
+    dependencies:
+      '@slidev/types': 0.28.10
+      codemirror-theme-vars: 0.1.2
+      prism-theme-vars: 0.2.5
 
   slidev-theme-neversink@0.4.1(@nuxt/kit@3.20.2)(@vue/compiler-sfc@3.5.26)(markdown-it-async@2.2.0)(markdown-it@14.1.0)(postcss@8.5.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.7)(jiti@2.6.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3)):
     dependencies:

@@ -6,12 +6,6 @@ This guide describes the custom components available in the `common/components/`
 
 These components are globally registered and can be used in any slide.
 
-### `GithubLink`
-A small icon link to the GitHub repository.
-```markdown
-<GithubLink repo="https://github.com/cristi-usm/react-course" />
-```
-
 ### `InfoCard`
 A card component used to highlight information or key concepts.
 ```markdown

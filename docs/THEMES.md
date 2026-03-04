@@ -47,3 +47,13 @@ When creating a new presentation, consider these factors:
 ### 3. The Content
 *   **Code-Heavy**: Themes with great syntax highlighting (`dracula`, `penguin`).
 *   **Diagram-Heavy**: Themes with plenty of space (`neversink`, `scholarly`).
+
+---
+
+## ⚠️ Layout Compatibility Warning
+
+Themes in Slidev are not always interchangeable regarding **Layouts**. 
+- The `neversink` theme supports `top-title`, `top-title-two-cols`, etc.
+- The `geist` or `default` themes might only support `default`, `center`, `two-cols`, etc.
+
+**Always verify the available layouts by checking the console errors if a slide fails to render.**
