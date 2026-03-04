@@ -1,21 +1,24 @@
-# Slidev Project - Multiple Presentations
+# Slidev Multi-Domain Project
 
-This project contains multiple Slidev presentations organized in the `presentations/` directory.
+This is a Slidev monorepo for managing multiple lessons across various domains.
+
+## 📚 Documentation
+
+See the **[DOCUMENTATION.md](./DOCUMENTATION.md)** for a complete guide on how to create slides, use components, and choose the best theme for your presentation.
 
 ## Getting Started
 
-1. `npm install`
+1. `pnpm install`
 2. Run a specific presentation:
-   - **Formulare HTML**: `npm run dev:forms`
-   - **Database Role**: `npm run dev:db`
-   - **Pythagorean Theorem**: `npm run dev:pythagoras`
-   - **Starter**: `npm run dev:starter`
+   - `npm run dev:introduction`
+   - `npm run dev:starter`
 
 ## Structure
-- `presentations/`: Contains individual slide decks.
-- `components/`: Shared Vue components used across presentations.
-- `public/`: Shared static assets.
+- `slides/`: Individual slide modules.
+- `common/`: Shared components, theme, and assets.
+- `scripts/`: Utility scripts for course management.
 
-Edit the slides in their respective directories (e.g., `presentations/database/slides.md`).
+## 🎨 Themes
+This project supports multiple themes. See the **[Theme Selection Guide](./docs/THEMES.md)** for details.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
