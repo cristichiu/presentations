@@ -1,0 +1,12 @@
+{
+  "name": "@react-course/common",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./components/*": "./components/*",
+    "./setup/*": "./setup/*",
+    "./theme/*": "./theme/*",
+    "./vite/*": "./vite/*"
+  }
+}
