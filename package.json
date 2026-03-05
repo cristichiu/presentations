@@ -11,6 +11,7 @@
     "build": "node scripts/build.mjs",
     "create-module": "node scripts/create-module.mjs",
     "dev:html-forms": "cd slides/01-html-forms && slidev slides.md --port 3044",
+    "dev:intro-css": "cd slides/02-intro-css && slidev slides.md --port 3045",
     "dev:starter": "cd slides/starter && slidev slides.md --port 3043",
     "preview": "npx serve dist"
   },

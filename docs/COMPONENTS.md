@@ -38,6 +38,19 @@ An interactive React sandbox using Sandpack.
 ```
 *   **Props**: `code`, `files`, `showFileExplorer`, `dependencies`, `editorHeight`, `showLineNumbers`.
 
+### `LiveWeb`
+An interactive HTML/CSS sandbox. **Best Practice**: Define the HTML content in the slide's frontmatter and pass it to the component.
+```markdown
+---
+html: |
+  <h1>Hello</h1>
+  <style>h1 { color: red; }</style>
+---
+<LiveWeb :html="$frontmatter.html" />
+```
+*   **Props**: `html`, `editorHeight`, `showLineNumbers`.
+*   **Note**: In `html`, only include content for `<body>` and `<style>` tags. Do not include `<html>` or `<head>`.
+
 ### `CardContainer`
 A container for grouping multiple `InfoCard` components.
 ```markdown
