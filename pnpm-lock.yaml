@@ -38,7 +38,7 @@ importers:
 
   slides/02-intro-css: {}
 
-  slides/starter: {}
+  slides/03-gym-system: {}
 
 packages:
 
