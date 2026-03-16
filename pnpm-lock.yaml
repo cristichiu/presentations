@@ -40,6 +40,8 @@ importers:
 
   slides/03-gym-system: {}
 
+  slides/04-css-layout: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
