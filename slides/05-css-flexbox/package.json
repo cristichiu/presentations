@@ -1,0 +1,13 @@
+{
+  "name": "@react-course/css-flexbox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3048",
+    "build": "slidev build slides.md"
+  },
+  "dependencies": {
+    "@slidev/theme-default": "^0.25.0"
+  }
+}
