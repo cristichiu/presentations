@@ -228,33 +228,33 @@ layout: default
 
 Conform teoriei (Tema 2), beneficiile observate sunt:
 
-<div class="grid grid-cols-2 gap-6 mt-8">
+<div class="grid grid-cols-2 gap-6 mt-8 text-white">
   <div class="flex gap-3">
     <div class="text-green-600 font-bold">✓</div>
     <div>
-      <div class="font-bold text-sm text-gray-900">Eficiență Operațională</div>
-      <p class="text-xs text-gray-800 font-medium">Eliberarea angajaților de rutină (ex: verificarea manuală a valabilității abonamentului).</p>
+      <div class="font-bold text-sm">Eficiență Operațională</div>
+      <p class="text-xs font-medium">Eliberarea angajaților de rutină (ex: verificarea manuală a valabilității abonamentului).</p>
     </div>
   </div>
   <div class="flex gap-3">
     <div class="text-green-600 font-bold">✓</div>
     <div>
-      <div class="font-bold text-sm text-gray-900">Integritatea Datelor</div>
-      <p class="text-xs text-gray-800 font-medium">Evitarea erorilor umane în evidența plăților și a vizitelor.</p>
+      <div class="font-bold text-sm">Integritatea Datelor</div>
+      <p class="text-xs font-medium">Evitarea erorilor umane în evidența plăților și a vizitelor.</p>
     </div>
   </div>
   <div class="flex gap-3">
     <div class="text-green-600 font-bold">✓</div>
     <div>
-      <div class="font-bold text-sm text-gray-900">Decizii Bazate pe Date</div>
-      <p class="text-xs text-gray-800 font-medium">Generarea rapoartelor periodice de popularitate a claselor de grup.</p>
+      <div class="font-bold text-sm">Decizii Bazate pe Date</div>
+      <p class="text-xs font-medium">Generarea rapoartelor periodice de popularitate a claselor de grup.</p>
     </div>
   </div>
   <div class="flex gap-3">
     <div class="text-green-600 font-bold">✓</div>
     <div>
-      <div class="font-bold text-sm text-gray-900">Experiența Clientului</div>
-      <p class="text-xs text-gray-800 font-medium">Timp de așteptare redus și acces rapid la servicii (booking online).</p>
+      <div class="font-bold text-sm">Experiența Clientului</div>
+      <p class="text-xs font-medium">Timp de așteptare redus și acces rapid la servicii (booking online).</p>
     </div>
   </div>
 </div>

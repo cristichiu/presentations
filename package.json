@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "create-module": "node scripts/create-module.mjs",
+    "dev:ciclu-viata-si": "cd slides/08-ciclu-viata-si && slidev slides.md --port 3051",
     "dev:css-flexbox": "cd slides/05-css-flexbox && slidev slides.md --port 3048",
     "dev:css-layout": "cd slides/04-css-layout && slidev slides.md --port 3047",
     "dev:gym-system": "cd slides/03-gym-system && slidev slides.md --port 3046",
