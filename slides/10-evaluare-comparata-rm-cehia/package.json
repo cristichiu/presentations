@@ -1,0 +1,10 @@
+{
+  "name": "@react-course/evaluare-comparata-rm-cehia",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3053",
+    "build": "slidev build slides.md"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@react-course/metode-dezvoltare-uml",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3052",
+    "build": "slidev build slides.md"
+  }
+}

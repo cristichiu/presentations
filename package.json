@@ -13,9 +13,11 @@
     "dev:ciclu-viata-si": "cd slides/08-ciclu-viata-si && slidev slides.md --port 3051",
     "dev:css-flexbox": "cd slides/05-css-flexbox && slidev slides.md --port 3048",
     "dev:css-layout": "cd slides/04-css-layout && slidev slides.md --port 3047",
+    "dev:evaluare-comparata-rm-cehia": "cd slides/10-evaluare-comparata-rm-cehia && slidev slides.md --port 3053",
     "dev:gym-system": "cd slides/03-gym-system && slidev slides.md --port 3046",
     "dev:html-forms": "cd slides/01-html-forms && slidev slides.md --port 3044",
     "dev:intro-css": "cd slides/02-intro-css && slidev slides.md --port 3045",
+    "dev:metode-dezvoltare-uml": "cd slides/09-metode-dezvoltare-uml && slidev slides.md --port 3052",
     "dev:sistem-informatic-sala-sport": "cd slides/07-sistem-informatic-sala-sport && slidev slides.md --port 3050",
     "dev:starter": "cd slides/starter && slidev slides.md --port 3043",
     "preview": "npx serve dist"

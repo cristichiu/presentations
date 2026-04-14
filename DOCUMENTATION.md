@@ -9,6 +9,7 @@ This system is designed to create high-quality, interactive slides across multip
 3.  **[Workflow Guide](./docs/WORKFLOW.md)** - How to create and manage slide modules.
 4.  **[Theme Guide](./docs/THEMES.md)** - Choosing the best theme for your domain.
 5.  **[Slide Templates](./docs/TEMPLATES.md)** - Ready-to-use patterns for common slide types.
+6.  **[Experience & Learnings](./docs/LEARNINGS.md)** - Best practices for research-based presentations.
 
 ## 🚀 Quick Start
 
