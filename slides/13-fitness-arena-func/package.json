@@ -1,0 +1,10 @@
+{
+  "name": "@react-course/fitness-arena-func",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3057",
+    "build": "slidev build slides.md"
+  }
+}

@@ -48,6 +48,8 @@ importers:
         specifier: ^0.25.0
         version: 0.25.0
 
+  slides/06-git-github: {}
+
   slides/07-sistem-informatic-sala-sport: {}
 
   slides/08-ciclu-viata-si: {}
@@ -55,6 +57,16 @@ importers:
   slides/09-metode-dezvoltare-uml: {}
 
   slides/10-evaluare-comparata-rm-cehia: {}
+
+  slides/11-js-basics: {}
+
+  slides/12-fitness-arena: {}
+
+  slides/13-fitness-arena-func: {}
+
+  slides/14-fitness-arena-use-case: {}
+
+  slides/15-fitness-arena-domain: {}
 
 packages:
 
