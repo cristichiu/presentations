@@ -68,6 +68,8 @@ importers:
 
   slides/15-fitness-arena-domain: {}
 
+  slides/16-arena-fitness-plan: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
