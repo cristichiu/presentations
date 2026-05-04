@@ -70,6 +70,8 @@ importers:
 
   slides/16-arena-fitness-plan: {}
 
+  slides/17-lesson2-js: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':

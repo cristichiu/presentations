@@ -1,0 +1,10 @@
+{
+  "name": "@react-course/lesson2-js",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3061",
+    "build": "slidev build slides.md"
+  }
+}
