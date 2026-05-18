@@ -7,8 +7,8 @@
  * Each presentation is built independently with the correct base path for deployment.
  *
  * Architecture:
- * - Hub (00-hub) → deployed at root (/)
- * - Modules (01-*, 02-*, etc.) → deployed at /<module-name>/
+ * - Root Hub (00-hub or hub at slides root) → deployed at root (/)
+ * - Modules & Sub-Hubs → deployed at their relative path (e.g., /JS-course/hub/)
  *
  * Usage:
  *   node scripts/build.mjs
@@ -66,20 +66,26 @@ function prepareDistDirectory() {
 
 /**
  * Build a single Slidev deck
- * @param {string} name - Deck name (e.g., 'hub', '01-fundamentals')
+ * @param {string} relativeDir - Relative directory from slides/
  * @param {string} entry - Path to slides.md
  * @param {string} base - Base path for deployment
  */
-function buildDeck(name, entry, base) {
-  log(`\n📦 Building ${name}...`, 'cyan');
+function buildDeck(relativeDir, entry, base) {
+  const isRootHub = relativeDir === 'hub' || relativeDir === '00-hub';
+  const folderName = isRootHub ? '' : relativeDir;
+  const outDir = path.join(DIST, folderName);
+  
+  log(`\n📦 Building ${relativeDir || 'root'}...`, 'cyan');
   log(`   Entry: ${path.relative(ROOT, entry)}`, 'blue');
   log(`   Base:  ${base}`, 'blue');
-
-  const outDir = name === 'hub' ? DIST : path.join(DIST, name);
   log(`   Output: ${path.relative(ROOT, outDir)}`, 'blue');
 
+  // Ensure output directory exists
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
+
   // Construct the Slidev build command
-  // Using absolute paths to avoid ambiguity
   const cmd = `npx slidev build "${entry}" --out "${outDir}" --base "${base}"`;
 
   try {
@@ -87,9 +93,9 @@ function buildDeck(name, entry, base) {
       stdio: 'inherit',
       cwd: ROOT
     });
-    log(`✅ Successfully built ${name}`, 'green');
+    log(`✅ Successfully built ${relativeDir || 'root'}`, 'green');
   } catch (error) {
-    log(`❌ Failed to build ${name}`, 'red');
+    log(`❌ Failed to build ${relativeDir || 'root'}`, 'red');
     log(`Error: ${error.message}`, 'red');
     process.exit(1);
   }
@@ -117,9 +123,8 @@ function discoverDecks() {
 
         if (fs.existsSync(slidesFile)) {
           decks.push({
-            name: currentRelative.replace(/[\/\\]/g, '-'), // Flatten name for build folder
-            path: slidesFile,
-            originalName: currentRelative
+            name: currentRelative,
+            path: slidesFile
           });
         } else if (!relativePath || relativePath.split(path.sep).length < 2) {
           // Go up to 2 levels deep
@@ -131,10 +136,12 @@ function discoverDecks() {
 
   scan(SLIDES_DIR);
 
-  // Sort decks: hub first, then others
+  // Sort decks: root hubs first, then others
   decks.sort((a, b) => {
-    if (a.name.includes('hub')) return -1;
-    if (b.name.includes('hub')) return 1;
+    const isRootA = a.name === 'hub' || a.name === '00-hub';
+    const isRootB = b.name === 'hub' || b.name === '00-hub';
+    if (isRootA) return -1;
+    if (isRootB) return 1;
     return a.name.localeCompare(b.name);
   });
 
@@ -154,30 +161,12 @@ function finalizeDeployment() {
 
   // Create a simple README in dist
   const readmePath = path.join(DIST, 'README.md');
-  const readmeContent = `# React Course - Build Artifacts
-
-This directory contains the built static assets for the React course.
-
-## Structure
-
-- \`/\` - Hub (Table of Contents)
-- \`/01-fundamentals/\` - Module 1: React Fundamentals
-- \`/02-hooks/\` - Module 2: React Hooks
-- Additional modules as they are added...
+  const readmeContent = `# Presentation Monorepo - Build Artifacts
 
 Built on: ${new Date().toISOString()}
 `;
   fs.writeFileSync(readmePath, readmeContent, 'utf8');
   log('✅ Created README.md in dist', 'green');
-
-  // Log the final structure
-  log('\n📂 Final Distribution Structure:', 'bright');
-  const distContents = fs.readdirSync(DIST);
-  distContents.forEach(item => {
-    const itemPath = path.join(DIST, item);
-    const isDir = fs.statSync(itemPath).isDirectory();
-    log(`   ${isDir ? '📁' : '📄'} ${item}`, isDir ? 'cyan' : 'reset');
-  });
 }
 
 /**
@@ -186,10 +175,9 @@ Built on: ${new Date().toISOString()}
 function main() {
   const startTime = Date.now();
 
-  logSection('🎬 React Course Build Orchestrator');
-  log('Building multi-deck Slidev courseware...', 'bright');
+  logSection('🎬 Presentation Build Orchestrator');
 
-  // Get base path prefix from environment variable (for GitHub Pages)
+  // Get base path prefix from environment variable
   const basePathPrefix = process.env.BASE_PATH || '';
   if (basePathPrefix) {
     log(`Using base path prefix: ${basePathPrefix}`, 'yellow');
@@ -216,12 +204,12 @@ function main() {
   logSection('🏗️  Building Decks');
 
   for (const deck of decks) {
-    const isHub = deck.name.includes('hub');
-    const deckPath = isHub ? '/' : `/${deck.name}/`;
-    const basePath = basePathPrefix + deckPath;
+    const isRootHub = deck.name === 'hub' || deck.name === '00-hub';
+    const deckPath = isRootHub ? '/' : `/${deck.name}/`;
+    const basePath = (basePathPrefix + deckPath).replace(/\/+$/, '/');
 
     buildDeck(
-      isHub ? 'hub' : deck.name,
+      deck.name,
       deck.path,
       basePath
     );
@@ -250,8 +238,6 @@ function main() {
   const duration = ((Date.now() - startTime) / 1000).toFixed(2);
   logSection('✨ Build Complete!');
   log(`Total time: ${duration}s`, 'green');
-  log(`\nYou can now deploy the 'dist' directory to your hosting provider.`, 'bright');
-  log(`For GitHub Pages, push this to your gh-pages branch.`, 'cyan');
 }
 
 // Run the build
