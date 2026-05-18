@@ -9,6 +9,7 @@ import LiveReact from '../components/LiveReact.vue'
 import LiveWeb from '../components/LiveWeb.vue'
 import Counter from '../components/Counter.vue'
 import HtmlRunner from '../components/HtmlRunner.vue'
+import CourseLink from '../components/CourseLink.vue'
 
 
 export default defineAppSetup(({ app }) => {
@@ -22,6 +23,7 @@ export default defineAppSetup(({ app }) => {
   app.component('LiveWeb', LiveWeb)
   app.component('Counter', Counter)
   app.component('HtmlRunner', HtmlRunner)
+  app.component('CourseLink', CourseLink)
 
   // Apply global theme configuration
   app.mixin({

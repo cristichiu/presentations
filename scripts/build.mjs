@@ -96,25 +96,40 @@ function buildDeck(name, entry, base) {
 }
 
 /**
- * Discover all slide decks in the slides directory
+ * Discover all slide decks in the slides directory (including subdirectories)
  * @returns {Array<{name: string, path: string}>}
  */
 function discoverDecks() {
   const decks = [];
-  const entries = fs.readdirSync(SLIDES_DIR);
 
-  for (const entry of entries) {
-    const deckPath = path.join(SLIDES_DIR, entry);
-    const slidesFile = path.join(deckPath, 'slides.md');
+  function scan(dir, relativePath = '') {
+    const entries = fs.readdirSync(dir);
 
-    // Check if this is a valid deck directory
-    if (fs.statSync(deckPath).isDirectory() && fs.existsSync(slidesFile)) {
-      decks.push({
-        name: entry,
-        path: slidesFile
-      });
+    for (const entry of entries) {
+      if (entry === 'node_modules' || entry === '.git') continue;
+
+      const fullPath = path.join(dir, entry);
+      const stats = fs.statSync(fullPath);
+
+      if (stats.isDirectory()) {
+        const slidesFile = path.join(fullPath, 'slides.md');
+        const currentRelative = relativePath ? path.join(relativePath, entry) : entry;
+
+        if (fs.existsSync(slidesFile)) {
+          decks.push({
+            name: currentRelative.replace(/[\/\\]/g, '-'), // Flatten name for build folder
+            path: slidesFile,
+            originalName: currentRelative
+          });
+        } else if (!relativePath || relativePath.split(path.sep).length < 2) {
+          // Go up to 2 levels deep
+          scan(fullPath, currentRelative);
+        }
+      }
     }
   }
+
+  scan(SLIDES_DIR);
 
   // Sort decks: hub first, then others
   decks.sort((a, b) => {

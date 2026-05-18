@@ -1,0 +1,10 @@
+{
+  "name": "@js-course/lectia-02",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --port 3064",
+    "build": "slidev build slides.md"
+  }
+}

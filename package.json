@@ -16,9 +16,22 @@
     "dev:html-forms": "cd slides/01-html-forms && slidev slides.md --port 3044",
     "dev:intro-css": "cd slides/02-intro-css && slidev slides.md --port 3045",
     "dev:js-basics": "cd slides/11-js-basics && slidev slides.md --port 3055",
+    "dev:js-lectia-01": "cd slides/JS-course/lectia-01 && slidev slides.md --port 3063",
+    "dev:js-lectia-02": "cd slides/JS-course/lectia-02 && slidev slides.md --port 3064",
+    "dev:js-lectia-03": "cd slides/JS-course/lectia-03 && slidev slides.md --port 3065",
+    "dev:js-lectia-04": "cd slides/JS-course/lectia-04 && slidev slides.md --port 3066",
+    "dev:js-lectia-05": "cd slides/JS-course/lectia-05 && slidev slides.md --port 3067",
+    "dev:js-lectia-06": "cd slides/JS-course/lectia-06 && slidev slides.md --port 3068",
+    "dev:js-lectia-07": "cd slides/JS-course/lectia-07 && slidev slides.md --port 3069",
+    "dev:js-lectia-08": "cd slides/JS-course/lectia-08 && slidev slides.md --port 3070",
+    "dev:js-lectia-09": "cd slides/JS-course/lectia-09 && slidev slides.md --port 3071",
+    "dev:js-lectia-10": "cd slides/JS-course/lectia-10 && slidev slides.md --port 3072",
+    "dev:js-lectia-11": "cd slides/JS-course/lectia-11 && slidev slides.md --port 3073",
+    "dev:js-lectia-12": "cd slides/JS-course/lectia-12 && slidev slides.md --port 3074",
     "dev:lesson2-js": "cd slides/17-lesson2-js && slidev slides.md --port 3061",
     "dev:lesson3-js": "cd slides/18-lesson3-js && slidev slides.md --port 3062",
-    "preview": "npx serve dist"
+    "preview": "npx serve dist",
+    "dev:js-hub": "cd slides/JS-course/hub && slidev slides.md --port 3075"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.0",

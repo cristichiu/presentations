@@ -21,8 +21,8 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 
-// Get base path from environment variable (default to /react-course for GitHub Pages)
-const BASE_PATH = process.env.BASE_PATH || '/react-course';
+// Get base path from environment variable (default to empty for root domain)
+const BASE_PATH = process.env.BASE_PATH || '';
 
 /**
  * Create root 404.html with smart redirect logic
@@ -44,14 +44,13 @@ function createRoot404() {
     // Store the original path in sessionStorage so the target SPA can navigate to it
     sessionStorage.setItem('spa-redirect', path);
 
-    // Extract module from path (e.g., /react-course/01-introduction/1 → 01-introduction)
-    // Pattern matches: /base/XX-modulename/...
-    var modulePattern = /\\/(\\d{2}-[^\\/]+)/;
-    var match = path.match(modulePattern);
-
-    if (match && match[1]) {
+    // Extract module from path
+    // We assume any first-level directory that isn't the base path itself is a module
+    var parts = path.replace('${BASE_PATH}', '').split('/').filter(Boolean);
+    
+    if (parts.length > 0) {
       // Redirect to the module's root
-      var moduleName = match[1];
+      var moduleName = parts[0];
       window.location.replace('${BASE_PATH}/' + moduleName + '/');
     } else {
       // No valid module found, redirect to hub
@@ -110,8 +109,6 @@ function injectRedirectHandler(indexPath, deckName) {
             window.location.href = redirectPath;
           }
         }
-        // Note: We don't need to do anything else - Slidev will read
-        // window.location.pathname when it initializes and show the correct slide
       }
     })();
   </script>
@@ -167,7 +164,7 @@ function processHub() {
  */
 function main() {
   console.log('🔧 Fixing SPA routing for GitHub Pages...\n');
-  console.log(`📍 Base path: ${BASE_PATH}\n`);
+  console.log(`📍 Base path: ${BASE_PATH || '(root)'}\n`);
 
   // 1. Create smart root 404.html
   console.log('📂 Creating root 404.html...');
@@ -182,18 +179,14 @@ function main() {
   for (const entry of entries) {
     const deckPath = path.join(DIST, entry);
 
-    // Only process module directories (XX-modulename pattern)
-    if (fs.statSync(deckPath).isDirectory() && /^\d{2}-/.test(entry)) {
+    // Process any directory that isn't assets and has an index.html
+    if (fs.statSync(deckPath).isDirectory() && entry !== 'assets' && fs.existsSync(path.join(deckPath, 'index.html'))) {
       console.log(`\n📂 Processing module: ${entry}...`);
       processModuleDeck(deckPath, entry);
     }
   }
 
   console.log('\n✨ SPA routing fix complete!');
-  console.log('\n📋 Summary:');
-  console.log('  • Root 404.html: Smart redirect to correct module');
-  console.log('  • Module index.html: Inject redirect handler');
-  console.log('  • Module 404.html: Safety copy of index.html');
 }
 
 main();

@@ -38,8 +38,6 @@ importers:
 
   slides/02-intro-css: {}
 
-  slides/03-gym-system: {}
-
   slides/04-css-layout: {}
 
   slides/05-css-flexbox:
@@ -50,31 +48,11 @@ importers:
 
   slides/06-git-github: {}
 
-  slides/07-sistem-informatic-sala-sport: {}
-
-  slides/08-ciclu-viata-si: {}
-
-  slides/09-metode-dezvoltare-uml: {}
-
-  slides/10-evaluare-comparata-rm-cehia: {}
-
   slides/11-js-basics: {}
-
-  slides/12-fitness-arena: {}
-
-  slides/13-fitness-arena-func: {}
-
-  slides/14-fitness-arena-use-case: {}
-
-  slides/15-fitness-arena-domain: {}
-
-  slides/16-arena-fitness-plan: {}
 
   slides/17-lesson2-js: {}
 
   slides/18-lesson3-js: {}
-
-  slides/19-testlesson: {}
 
 packages:
 
