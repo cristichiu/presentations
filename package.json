@@ -25,9 +25,11 @@
     "dev:intro-css": "cd slides/02-intro-css && slidev slides.md --port 3045",
     "dev:js-basics": "cd slides/11-js-basics && slidev slides.md --port 3055",
     "dev:lesson2-js": "cd slides/17-lesson2-js && slidev slides.md --port 3061",
+    "dev:lesson3-js": "cd slides/18-lesson3-js && slidev slides.md --port 3062",
     "dev:metode-dezvoltare-uml": "cd slides/09-metode-dezvoltare-uml && slidev slides.md --port 3052",
     "dev:sistem-informatic-sala-sport": "cd slides/07-sistem-informatic-sala-sport && slidev slides.md --port 3050",
     "dev:starter": "cd slides/starter && slidev slides.md --port 3043",
+    "dev:testlesson": "cd slides/19-testlesson && slidev slides.md --port 3063",
     "preview": "npx serve dist"
   },
   "dependencies": {

@@ -72,6 +72,10 @@ importers:
 
   slides/17-lesson2-js: {}
 
+  slides/18-lesson3-js: {}
+
+  slides/19-testlesson: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
